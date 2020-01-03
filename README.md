@@ -1,2 +1,1 @@
-# core-event-dispatcher
-Event Dispatcher
+# Event Dispatcher
