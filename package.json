@@ -1,0 +1,39 @@
+{
+  "name": "core-event-dispatcher",
+  "version": "1.0.0",
+  "description": "Event Dispatcher",
+  "license": "MIT",
+  "author": "Vereshchagin Roman Vladimirovich",
+  "homepage": "https://www.sibvrv.com",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "private": true,
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run lint && npm run build:prod",
+    "build:dev": "webpack --mode=development --progress --colors",
+    "build:prod": "webpack --mode=production --progress --colors",
+    "lint": "tslint -p .",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.17",
+    "@types/webpack": "^4.41.0",
+    "@types/webpack-merge": "^4.1.5",
+    "chai": "^4.2.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "co-mocha": "^1.2.2",
+    "mocha": "^6.2.2",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
