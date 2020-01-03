@@ -1,25 +1,25 @@
 export type TEventCallBack = (...args: any[]) => any;
 
-export interface IEvent<Enum> {
+export interface DispatchAbleEvent<Enum> {
   type: Enum;
   args: any[];
   target: any;
 }
 
-export class EventDispatcher<Enum, Names extends keyof Enum> {
+export class EventDispatcher<Enum extends string> {
   protected __events: {
-    [index in Names]: TEventCallBack[];
+    [index: string]: TEventCallBack[];
   } = {} as any;
 
-  find(type: Names, callback: TEventCallBack) {
+  find(type: Enum, callback: TEventCallBack) {
     return Array.isArray(this.__events[type]) ? this.__events[type].indexOf(callback) : -1;
   }
 
-  has(type: Names, callback: TEventCallBack) {
+  has(type: Enum, callback: TEventCallBack) {
     return this.find(type, callback) !== -1;
   }
 
-  on(type: Names, callback: TEventCallBack) {
+  on(type: Enum, callback: TEventCallBack) {
     const list = this.__events[type] = this.__events[type] ?? [];
 
     if (list.indexOf(callback) === -1) {
@@ -27,7 +27,7 @@ export class EventDispatcher<Enum, Names extends keyof Enum> {
     }
   }
 
-  off(type: Names, callback?: TEventCallBack) {
+  off(type: Enum, callback?: TEventCallBack) {
     if (!callback) {
       delete this.__events[type];
       return;
@@ -39,10 +39,10 @@ export class EventDispatcher<Enum, Names extends keyof Enum> {
     }
   }
 
-  dispatch(type: Names, ...args: any[]) {
+  dispatch(type: Enum, ...args: any[]) {
     const eventsList = this.__events[type];
     if (Array.isArray(eventsList)) {
-      const event: IEvent<Names> = {
+      const event: DispatchAbleEvent<Enum> = {
         type,
         args,
         target: this
