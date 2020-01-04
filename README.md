@@ -4,6 +4,14 @@ Simple & tiny event dispatcher
 ## Motivation
 I want simple event dispatcher for my apps I created.
 
+## API
+EventDispatcher
+* .on()
+* .off()
+* .dispatch()
+* .find()
+* .has()
+
 ## Example
 ```typescript
 import {EventDispatcher} from 'core-event-dispatcher';
